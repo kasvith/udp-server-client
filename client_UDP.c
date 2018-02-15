@@ -23,7 +23,7 @@ int main(int argc, char**argv){
 
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr=inet_addr(argv[1]);
-	servaddr.sin_port=htons(32000);
+	servaddr.sin_port=4500;
 
 	sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 

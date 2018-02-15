@@ -15,7 +15,7 @@ int main(int argc, char**argv){
 	
 	servaddr.sin_family = AF_INET;	//address family	
 	servaddr.sin_addr.s_addr=htonl(INADDR_ANY);	//IP address in the network byte order
-	servaddr.sin_port=htons(32000);
+	servaddr.sin_port=4500;
 	
 	bind(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr));
 	len = sizeof(cliaddr);
