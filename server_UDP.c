@@ -15,16 +15,18 @@ int main(int argc, char**argv){
 	
 	servaddr.sin_family = AF_INET;	//address family	
 	servaddr.sin_addr.s_addr=htonl(INADDR_ANY);	//IP address in the network byte order
-	servaddr.sin_port=4500;
+	servaddr.sin_port=htons(4666);
 	
 	bind(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr));
 	len = sizeof(cliaddr);
-	
-	n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-	
-	sendto(sockfd,banner,n,0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
-	mesg[n] = 0;
-	
-	printf("Received: %s\n",mesg);
+
+	while(1){
+		n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
+		
+		sendto(sockfd,banner,n,0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+		mesg[n] = 0;
+		
+		printf("Received: %s\n",mesg);
+	}
 	return 0;
 }
