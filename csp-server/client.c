@@ -47,14 +47,14 @@ int main(int argc, char**argv){
 
 	for (i = 0; i < nn; i++)
 	{
-		printf("Sentence %d : \n", i+1);
+		printf("Sentence %d : ", i+1);
 		scanf("%s", sendline);
 		sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
 	
 		recvline[n]=0;
 
-		printf("%s\n", recvline);
+		printf("Uppercase : %s\n", recvline);
 	}
 
 	
