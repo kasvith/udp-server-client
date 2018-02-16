@@ -27,7 +27,7 @@ int main(int argc, char**argv){
 	servaddr.sin_port=htons(4666);
 
 	printf("%s", "Enter the number of sentences you want to send : ");
-	scanf("%s", &numoflines);
+	scanf("%s", numoflines);
 
 	sendto(sockfd,numoflines,strlen(numoflines),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 
