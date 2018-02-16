@@ -25,9 +25,9 @@ int main(int argc, char**argv){
 	servaddr.sin_port=htons(3776);
 
 	while(1){
-		n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-		mesg[n] = 0;
-		puts(mesg);
+		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
+		recvline[n] = 0;
+		puts(recvline);
 	}
 
 	
