@@ -51,6 +51,7 @@ int main(int argc, char**argv){
 		scanf("%s", sendline);
 		sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
+		printf("%d\n", n);
 		recvline[n]=0;
 
 		printf("%s\n", recvline);
