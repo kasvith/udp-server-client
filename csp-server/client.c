@@ -24,7 +24,7 @@ int main(int argc, char**argv){
 
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr=inet_addr(argv[1]);
-	servaddr.sin_port=htons(4666);
+	servaddr.sin_port=htons(4667);
 
 	printf("%s", "Enter the number of sentences you want to send : ");
 	scanf("%s", numoflines);
