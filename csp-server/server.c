@@ -8,7 +8,7 @@
 
 void uppercase(char * temp) {
   char* st;
-  name = strtok(temp,":");
+  st = strtok(temp,":");
 
   // Convert to upper case
   char *s = st;
