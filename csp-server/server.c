@@ -6,6 +6,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+void uppercase(char * temp) {
+  char* st;
+  name = strtok(temp,":");
+
+  // Convert to upper case
+  char *s = st;
+  while (*s) {
+    *s = toupper((unsigned char) *s);
+    s++;
+  }
+
+}
 
 int main(int argc, char**argv){
 	int sockfd,n;
@@ -36,7 +48,8 @@ int main(int argc, char**argv){
 
 		while(numoflines > 0){
 			n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-			sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+			uppercase(mesg);
+			sendto(sockfd,mesg, strlen(mesg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 			numoflines--;
 		}
 	}
