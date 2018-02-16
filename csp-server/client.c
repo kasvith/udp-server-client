@@ -35,7 +35,8 @@ int main(int argc, char**argv){
 
 	recvline[n]=0;
 
-	if(strcmp("ack\0", recvline) != 0){
+	const char* ack = "ack";
+	if(strcmp(ack, recvline) != 0){
 		printf("Server refused : %s\n", recvline);
 		return -1;
 	}
