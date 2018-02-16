@@ -11,12 +11,13 @@ int main(int argc, char**argv){
 	struct sockaddr_in servaddr;
 	char sendline[] = "Hello UDP server! This is UDP client";
 	char recvline[1000];
+	char numoflines[100];
 
 	if (argc != 2){
 		printf("usage:%s <IP address>\n",argv[0]);
 		return -1;
 	}
-	
+
 	sockfd=socket(AF_INET,SOCK_DGRAM,0);
 	
 	bzero(&servaddr,sizeof(servaddr));
@@ -25,11 +26,21 @@ int main(int argc, char**argv){
 	servaddr.sin_addr.s_addr=inet_addr(argv[1]);
 	servaddr.sin_port=htons(4666);
 
-	sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
+	printf("%s", "Enter the number of sentences you want to send : ");
+	scanf("%s", &numoflines);
+
+	sendto(sockfd,numoflines,strlen(numoflines),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 
 	n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
 
 	recvline[n]=0;
+
+	if(!strcmp("ack", recvline)){
+		printf("Server refused\n");
+		return -1;
+	}
+
+	
 	
 	printf("Received: %s\n",recvline);
 	return 0;

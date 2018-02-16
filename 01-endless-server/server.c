@@ -3,7 +3,6 @@
 #include <netinet/in.h>
 #include <strings.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(int argc, char**argv){
 	int sockfd,n;
@@ -11,8 +10,6 @@ int main(int argc, char**argv){
 	socklen_t len;
 	char mesg[1000];
 	char* banner = "Hello UDP client! This is UDP server";
-	char* ack = "ack";
-	int numOfLines = 0;
 	
 	sockfd=socket(AF_INET,SOCK_DGRAM,0);	//create a socket
 	
@@ -25,12 +22,11 @@ int main(int argc, char**argv){
 
 	while(1){
 		n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-		mesg[n] = 0;
-		numoflines = atoi(mesg);
-
-		sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 		
-		printf("Waiting %s times\n",mesg);
+		sendto(sockfd,banner,n,0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+		mesg[n] = 0;
+		
+		printf("Received: %s\n",mesg);
 	}
 	return 0;
 }
