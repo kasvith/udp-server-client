@@ -11,7 +11,7 @@ int main(int argc, char**argv){
 	struct sockaddr_in servaddr;
 	char sendline[] = "Hello UDP server! This is UDP client";
 	char recvline[1000];
-	char numoflines[100];
+	char* numoflines;
 
 	if (argc != 2){
 		printf("usage:%s <IP address>\n",argv[0]);
@@ -40,7 +40,7 @@ int main(int argc, char**argv){
 		return -1;
 	}
 
-	
+
 	
 	printf("Received: %s\n",recvline);
 	return 0;
