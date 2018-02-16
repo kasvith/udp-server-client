@@ -49,6 +49,7 @@ int main(int argc, char**argv){
 		while(numoflines > 0){
 			char msg[1000];
 			n=recvfrom(sockfd,msg,1000,0,(struct sockaddr*)&cliaddr,&len);
+			msg[n] = 0;
 			uppercase(msg);
 			sendto(sockfd,msg, strlen(msg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 			numoflines--;
