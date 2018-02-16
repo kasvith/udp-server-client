@@ -9,6 +9,7 @@
 int main(int argc, char**argv){
 	int sockfd,n;
 	struct sockaddr_in servaddr;
+	char* sendline = "ack";
 	char recvline[1000];
 
 	if (argc != 2){
@@ -23,6 +24,8 @@ int main(int argc, char**argv){
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr=inet_addr(argv[1]);
 	servaddr.sin_port=htons(3776);
+
+	sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
 
 	while(1){
 		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);

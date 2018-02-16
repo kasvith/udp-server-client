@@ -20,6 +20,8 @@ int main(int argc, char**argv){
 	bind(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr));
 	len = sizeof(cliaddr);
 
+	n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
+
 	while(1){
 		time_t current_time;
 		struct tm * time_info;
