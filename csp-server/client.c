@@ -9,7 +9,7 @@
 int main(int argc, char**argv){
 	int sockfd,n;
 	struct sockaddr_in servaddr;
-	char* sendline;
+	char sendline[1000];
 	char recvline[1000];
 	char* numoflines;
 
