@@ -4,6 +4,8 @@
 #include <strings.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 int main(int argc, char**argv){
 	int sockfd,n;
@@ -12,7 +14,7 @@ int main(int argc, char**argv){
 	char mesg[1000];
 	char* banner = "Hello UDP client! This is UDP server";
 	char* ack = "ack";
-	int numOfLines = 0;
+	int numoflines = 0;
 	
 	sockfd=socket(AF_INET,SOCK_DGRAM,0);	//create a socket
 	
