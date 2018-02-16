@@ -35,10 +35,10 @@ int main(int argc, char**argv){
 
 	recvline[n]=0;
 
-	//if(!strcmp("ack", recvline)){
+	if(strcmp("ack", recvline) != 0){
 		printf("Server refused : %s\n", recvline);
 		return -1;
-	//}
+	}
 
 	printf("Received: %s\n",recvline);
 	return 0;
