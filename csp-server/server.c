@@ -47,9 +47,10 @@ int main(int argc, char**argv){
 		printf("Waiting %s times\n",mesg);
 
 		while(numoflines > 0){
-			n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-			uppercase(mesg);
-			sendto(sockfd,mesg, strlen(mesg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+			char msg[1000];
+			n=recvfrom(sockfd,msg,1000,0,(struct sockaddr*)&cliaddr,&len);
+			uppercase(msg);
+			sendto(sockfd,msg, strlen(msg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 			numoflines--;
 		}
 	}
