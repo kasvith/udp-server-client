@@ -37,23 +37,23 @@ int main(int argc, char**argv){
 	bind(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr));
 	len = sizeof(cliaddr);
 
-	while(1){
+	
+	n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
+	mesg[n] = 0;
+	numoflines = atoi(mesg);
+
+	sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+	
+	printf("Waiting %s times\n",mesg);
+
+	while(numoflines > 0){
 		n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
 		mesg[n] = 0;
-		numoflines = atoi(mesg);
-
-		sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
-		
-		printf("Waiting %s times\n",mesg);
-
-		while(numoflines > 0){
-			n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
-			mesg[n] = 0;
-			printf("Received : %s\n", mesg);
-			uppercase(mesg);
-			sendto(sockfd,mesg, strlen(mesg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
-			numoflines--;
-		}
+		printf("Received : %s\n", mesg);
+		uppercase(mesg);
+		sendto(sockfd,mesg, strlen(mesg),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+		numoflines--;
 	}
+	
 	return 0;
 }
