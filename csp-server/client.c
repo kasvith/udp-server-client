@@ -11,7 +11,7 @@ int main(int argc, char**argv){
 	struct sockaddr_in servaddr;
 	char sendline[1000];
 	char recvline[1000];
-	char* numoflines;
+	char numoflines[1000];
 
 	if (argc != 2){
 		printf("usage:%s <IP address>\n",argv[0]);
