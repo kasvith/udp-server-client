@@ -9,7 +9,7 @@
 int main(int argc, char**argv){
 	int sockfd,n;
 	struct sockaddr_in servaddr;
-	char sendline[] = "Hello UDP server! This is UDP client";
+	char* sendline;
 	char recvline[1000];
 	char* numoflines;
 
@@ -37,10 +37,25 @@ int main(int argc, char**argv){
 
 	char ack[] = "ack";
 	if(strcmp(ack, recvline) != 0){
-		printf("Server refused : %s\n", recvline);
+		printf("Server refused\n");
 		return -1;
 	}
 
-	printf("Received: %s\n",recvline);
+	printf("Type each sentence and press enter\n");
+	int nn = atoi(numoflines);
+	int i = 0;
+
+	for (i = 0; i < nn; i++)
+	{
+		printf("Sentence %d : \n", i+1);
+		scanf("%s", sendline);
+		sendto(sockfd,sendline,strlen(sendline),0,(struct sockaddr*)&servaddr,sizeof(servaddr));
+		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
+		recvline[n]=0;
+
+		printf("%s\n", recvline);
+	}
+
+	
 	return 0;
 }

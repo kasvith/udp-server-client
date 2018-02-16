@@ -33,6 +33,12 @@ int main(int argc, char**argv){
 		sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 		
 		printf("Waiting %s times\n",mesg);
+
+		while(numoflines > 0){
+			n=recvfrom(sockfd,mesg,1000,0,(struct sockaddr*)&cliaddr,&len);
+			sendto(sockfd,ack, strlen(ack),0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
+			numoflines--;
+		}
 	}
 	return 0;
 }
