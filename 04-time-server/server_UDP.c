@@ -31,7 +31,7 @@ int main(int argc, char**argv){
 		time_info = localtime(&current_time);
 
 		strftime(timeString, sizeof(timeString), "%H:%M:%S", time_info);
-		puts(timeString);
+		printf("Sending : %s\n", timeString);
 		sendto(sockfd,timeString,9,0,(struct sockaddr*)&cliaddr,sizeof(cliaddr));
 		sleep(1);
 	}

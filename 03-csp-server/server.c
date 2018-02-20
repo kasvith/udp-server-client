@@ -7,11 +7,8 @@
 #include <string.h>
 
 void uppercase(char * temp) {
-  char* st;
-  st = strtok(temp,":");
-
   // Convert to upper case
-  char *s = st;
+  char *s = temp;
   while (*s) {
     *s = toupper((unsigned char) *s);
     s++;

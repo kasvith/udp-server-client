@@ -30,7 +30,7 @@ int main(int argc, char**argv){
 	while(1){
 		n=recvfrom(sockfd,recvline,10000,0,NULL,NULL);
 		recvline[n] = 0;
-		puts(recvline);
+		printf("Received : %s\n", recvline);
 	}
 
 	
